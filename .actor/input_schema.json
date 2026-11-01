@@ -1,0 +1,108 @@
+{
+  "title": "PDF to Markdown input",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "startUrls": {
+      "title": "PDF URLs",
+      "type": "array",
+      "editor": "requestListSources",
+      "description": "Public http(s) links to PDF files, e.g. https://nvlpubs.nist.gov/nistpubs/CSWP/NIST.CSWP.29.pdf. Non-PDF and failed URLs return an error item and are not charged.",
+      "prefill": [
+        {
+          "url": "https://nvlpubs.nist.gov/nistpubs/CSWP/NIST.CSWP.29.pdf"
+        }
+      ]
+    },
+    "outputMode": {
+      "title": "Output",
+      "type": "string",
+      "editor": "select",
+      "enum": [
+        "chunks",
+        "pages",
+        "document"
+      ],
+      "enumTitles": [
+        "RAG chunks (one item per chunk, with page citations)",
+        "Pages (one item per page)",
+        "Document (one item per PDF, full Markdown)"
+      ],
+      "default": "chunks",
+      "description": "'chunks' = one dataset item per RAG chunk with headingPath, page range and citation (best for vector DBs). 'pages' = one item per page. 'document' = one item per PDF with full Markdown. The full Markdown is always also saved to the key-value store."
+    },
+    "chunkSizeChars": {
+      "title": "Chunk size (characters)",
+      "type": "integer",
+      "default": 2000,
+      "minimum": 200,
+      "maximum": 20000,
+      "description": "Target maximum characters per chunk in 'chunks' mode (~4 characters ≈ 1 token; 2000 ≈ 500 tokens)."
+    },
+    "chunkOverlapChars": {
+      "title": "Chunk overlap (characters)",
+      "type": "integer",
+      "default": 200,
+      "minimum": 0,
+      "maximum": 5000,
+      "description": "Characters repeated between consecutive chunks when a long section must be split."
+    },
+    "ocrMode": {
+      "title": "OCR",
+      "type": "string",
+      "editor": "select",
+      "enum": [
+        "auto",
+        "off",
+        "force"
+      ],
+      "enumTitles": [
+        "Auto (OCR only pages without a text layer)",
+        "Off",
+        "Force OCR on every page"
+      ],
+      "default": "auto",
+      "description": "'auto' OCRs only pages without a text layer (recommended). 'off' never OCRs. 'force' OCRs every page. Each OCR'd page costs $0.004 extra."
+    },
+    "tableFormat": {
+      "title": "Table format",
+      "type": "string",
+      "editor": "select",
+      "enum": [
+        "markdown",
+        "html"
+      ],
+      "enumTitles": [
+        "Markdown tables",
+        "HTML tables (better for merged cells)"
+      ],
+      "default": "markdown",
+      "description": "How detected tables are rendered."
+    },
+    "maxPagesPerDocument": {
+      "title": "Max pages per document",
+      "type": "integer",
+      "default": 300,
+      "minimum": 1,
+      "maximum": 5000,
+      "description": "Only the first N pages of each PDF are converted. Pages beyond this are skipped and not charged."
+    },
+    "maxFileSizeMb": {
+      "title": "Max file size (MB)",
+      "type": "integer",
+      "default": 100,
+      "minimum": 1,
+      "maximum": 500,
+      "description": "Larger files are skipped."
+    },
+    "removeHeadersFooters": {
+      "title": "Remove page headers & footers",
+      "type": "boolean",
+      "default": true,
+      "description": "Drop running headers, footers and page numbers so chunks contain only body text."
+    }
+  },
+  "required": [
+    "startUrls"
+  ]
+}

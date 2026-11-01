@@ -1,0 +1,16 @@
+{
+  "actorSpecification": 1,
+  "name": "pdf-to-markdown-rag",
+  "title": "PDF to Markdown & RAG Chunks — OCR, Tables, Page Citations",
+  "description": "Convert PDF URLs into clean LLM-ready Markdown (headings, tables) or heading-aware RAG chunks with page numbers and citations. Automatic OCR for scanned pages. No external AI APIs or token costs. Great for RFPs, regulations, reports and manuals. $1.50 per 1,000 pages.",
+  "version": "1.0",
+  "buildTag": "latest",
+  "input": "./input_schema.json",
+  "storages": {
+    "dataset": "./dataset_schema.json"
+  },
+  "dockerfile": "../Dockerfile",
+  "minMemoryMbytes": 1024,
+  "maxMemoryMbytes": 4096,
+  "output": "./output_schema.json"
+}

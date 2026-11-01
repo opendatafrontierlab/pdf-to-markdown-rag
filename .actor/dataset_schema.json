@@ -1,0 +1,81 @@
+{
+  "actorSpecification": 1,
+  "fields": {},
+  "views": {
+    "overview": {
+      "title": "Chunks / pages",
+      "transformation": {
+        "fields": [
+          "fileName",
+          "title",
+          "pageStart",
+          "pageEnd",
+          "headingPath",
+          "approxTokens",
+          "text",
+          "url"
+        ]
+      },
+      "display": {
+        "component": "table",
+        "properties": {
+          "fileName": {
+            "label": "File"
+          },
+          "title": {
+            "label": "Title"
+          },
+          "pageStart": {
+            "label": "From p."
+          },
+          "pageEnd": {
+            "label": "To p."
+          },
+          "headingPath": {
+            "label": "Section"
+          },
+          "approxTokens": {
+            "label": "~Tokens",
+            "format": "number"
+          },
+          "text": {
+            "label": "Text"
+          },
+          "url": {
+            "label": "Source",
+            "format": "link"
+          }
+        }
+      }
+    },
+    "documents": {
+      "title": "Documents",
+      "transformation": {
+        "fields": [
+          "fileName",
+          "title",
+          "pageCount",
+          "pagesProcessed",
+          "ocrPages",
+          "wordCount",
+          "markdownUrl",
+          "error",
+          "url"
+        ]
+      },
+      "display": {
+        "component": "table",
+        "properties": {
+          "markdownUrl": {
+            "label": "Markdown",
+            "format": "link"
+          },
+          "url": {
+            "label": "Source",
+            "format": "link"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "actorOutputSchemaVersion": 1,
+  "title": "Output of pdf-to-markdown-rag",
+  "properties": {
+    "results": {
+      "type": "string",
+      "title": "Converted documents",
+      "description": "Markdown documents, pages or RAG chunks, one item per output unit.",
+      "template": "{{links.apiDefaultDatasetUrl}}/items?view=overview"
+    },
+    "files": {
+      "type": "string",
+      "title": "Full Markdown files",
+      "description": "Full Markdown file per document (linked from each item's markdownUrl).",
+      "template": "{{links.apiDefaultKeyValueStoreUrl}}/keys"
+    }
+  }
+}
